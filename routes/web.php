@@ -28,6 +28,9 @@ Route::get('items/user/{id}', [
 Route::get('items/{id}', [
     'uses' => 'ItemsController@get',
 ]);
+Route::get('hystory/{id}', [
+    'uses' => 'ItemsController@getHystoryItem',
+]);
 
 Route::post('update/item/', [
     'uses' => 'ItemsController@update',

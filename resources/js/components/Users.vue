@@ -67,6 +67,7 @@
             <td>{{ props.item.comment_item }}</td>
             <td>{{ props.item.name_status }}</td>
             <td class="justify-center layout px-0">
+              <v-icon small class="mr-2" @click="hystoryItem(props.item)">query_builder</v-icon>
               <v-icon small class="mr-2" @click="editItem(props.item)">edit</v-icon>
               <v-icon small @click="deleteItem(props.item)">delete</v-icon>
             </td>
@@ -76,6 +77,7 @@
     </v-dialog>
     <User :editingUser="selected" :dialog="userDialog"></User>
     <Item :editedItem="editedItem" :dialog="editDialog" :editedIndex="editedItem.id_item"></Item>
+    <Hystory v-if="hystoryDialog" :dialog="hystoryDialog" :id="editedItem.id_item" :caption_item="editedItem.caption_item"></Hystory>
   </div>
 </template>
 <script>
@@ -87,6 +89,7 @@ class DefaultUser {
 
 import Item from "./modals/Item";
 import User from "./modals/User";
+import Hystory from "./modals/Hystory";
 import ItemsService from "../services/ItemsService";
 import UsersService from "../services/UsersService";
 import Axios from "axios";
@@ -102,7 +105,7 @@ export default {
       editedItem: {},
       editDialog: false,
       userDialog: false,
-      barcodeDialog: false,
+      hystoryDialog: false,
       selectedItems: [],
       headers: [
         {
@@ -161,6 +164,10 @@ export default {
         .get("items/user/" + this.active[0])
         .then(response => (this.selectedItems = response.data));
     },
+    hystoryItem(item) {
+      this.editedItem = Object.assign({}, item);
+      this.hystoryDialog = true;
+    },
     editItem(item) {
       this.editedItem = Object.assign({}, item);
       this.editDialog = true;
@@ -192,6 +199,7 @@ export default {
   components: {
     Item,
     User,
+    Hystory,
   },
   created() {
     this.getUsers();
@@ -202,6 +210,7 @@ export default {
       this.getUsers();
       this.editDialog = false;
       this.userDialog = false;
+      this.hystoryDialog = false;
     });
   }
 };

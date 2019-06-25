@@ -15,5 +15,9 @@ export default {
     },
     get(data) {
         return Api().get('items/' + data)
+    },
+    hystory(data) {
+        return Api().get('hystory/' + data)
     }
+
 }

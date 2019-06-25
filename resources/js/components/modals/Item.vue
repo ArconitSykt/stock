@@ -34,7 +34,7 @@
               <v-text-field v-model="item.ser_num_item" label="Серийный номер"></v-text-field>
             </v-flex>
           </v-layout>
-          <v-layout row wrap v-if="editedIndex === -1">
+          <v-layout row wrap >
             <v-flex xs12 sm12 md6 lg6 xl6>
               <v-menu>
                 <template v-slot:activator="{ on }">

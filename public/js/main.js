@@ -1978,10 +1978,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _modals_Item__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modals/Item */ "./resources/js/components/modals/Item.vue");
 /* harmony import */ var _modals_User__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modals/User */ "./resources/js/components/modals/User.vue");
-/* harmony import */ var _services_ItemsService__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../services/ItemsService */ "./resources/js/services/ItemsService.js");
-/* harmony import */ var _services_UsersService__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../services/UsersService */ "./resources/js/services/UsersService.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _modals_Hystory__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modals/Hystory */ "./resources/js/components/modals/Hystory.vue");
+/* harmony import */ var _services_ItemsService__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../services/ItemsService */ "./resources/js/services/ItemsService.js");
+/* harmony import */ var _services_UsersService__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../services/UsersService */ "./resources/js/services/UsersService.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_6__);
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -1990,6 +1991,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+//
+//
 //
 //
 //
@@ -2081,6 +2084,7 @@ var DefaultUser = function DefaultUser() {
 
 
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2092,7 +2096,7 @@ var DefaultUser = function DefaultUser() {
       editedItem: {},
       editDialog: false,
       userDialog: false,
-      barcodeDialog: false,
+      hystoryDialog: false,
       selectedItems: [],
       headers: [{
         text: "Название предмета",
@@ -2128,12 +2132,12 @@ var DefaultUser = function DefaultUser() {
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return _services_UsersService__WEBPACK_IMPORTED_MODULE_4__["default"].index();
+                return _services_UsersService__WEBPACK_IMPORTED_MODULE_5__["default"].index();
 
               case 2:
                 data = _context.sent;
                 _context.next = 5;
-                return _services_UsersService__WEBPACK_IMPORTED_MODULE_4__["default"].raw();
+                return _services_UsersService__WEBPACK_IMPORTED_MODULE_5__["default"].raw();
 
               case 5:
                 rawData = _context.sent;
@@ -2157,7 +2161,7 @@ var DefaultUser = function DefaultUser() {
     deleteUser: function deleteUser() {
       if (confirm("\u0423\u0434\u0430\u043B\u0438\u0442\u044C ".concat(this.selected.name_user, "?"))) {
         try {
-          _services_UsersService__WEBPACK_IMPORTED_MODULE_4__["default"]["delete"](this.selected);
+          _services_UsersService__WEBPACK_IMPORTED_MODULE_5__["default"]["delete"](this.selected);
           this.dialog = false;
         } catch (error) {
           this.message = error;
@@ -2196,6 +2200,10 @@ var DefaultUser = function DefaultUser() {
 
       return getItems;
     }(),
+    hystoryItem: function hystoryItem(item) {
+      this.editedItem = Object.assign({}, item);
+      this.hystoryDialog = true;
+    },
     editItem: function editItem(item) {
       this.editedItem = Object.assign({}, item);
       this.editDialog = true;
@@ -2203,7 +2211,7 @@ var DefaultUser = function DefaultUser() {
     deleteItem: function deleteItem(item) {
       if (confirm("\u0423\u0434\u0430\u043B\u0438\u0442\u044C ".concat(item.caption_item, "?"))) {
         try {
-          _services_ItemsService__WEBPACK_IMPORTED_MODULE_3__["default"]["delete"](item);
+          _services_ItemsService__WEBPACK_IMPORTED_MODULE_4__["default"]["delete"](item);
         } catch (error) {
           this.message = error;
         }
@@ -2228,7 +2236,8 @@ var DefaultUser = function DefaultUser() {
   },
   components: {
     Item: _modals_Item__WEBPACK_IMPORTED_MODULE_1__["default"],
-    User: _modals_User__WEBPACK_IMPORTED_MODULE_2__["default"]
+    User: _modals_User__WEBPACK_IMPORTED_MODULE_2__["default"],
+    Hystory: _modals_Hystory__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
   created: function created() {
     this.getUsers();
@@ -2243,7 +2252,75 @@ var DefaultUser = function DefaultUser() {
 
       _this2.editDialog = false;
       _this2.userDialog = false;
+      _this2.hystoryDialog = false;
     });
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/modals/Hystory.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/modals/Hystory.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _services_ItemsService__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../services/ItemsService */ "./resources/js/services/ItemsService.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    dialog: Boolean,
+    id: Number,
+    caption_item: String
+  },
+  data: function data() {
+    return {
+      hystory: {}
+    };
+  },
+  methods: {
+    getHystory: function getHystory() {
+      var _this = this;
+
+      axios.get("hystory/" + this.id).then(function (response) {
+        _this.hystory = response.data;
+      });
+    },
+    close: function close() {
+      Event.$emit("closeDialog", 0);
+    }
+  },
+  mounted: function mounted() {
+    this.getHystory();
   }
 });
 
@@ -47882,6 +47959,20 @@ var render = function() {
                                 attrs: { small: "" },
                                 on: {
                                   click: function($event) {
+                                    return _vm.hystoryItem(props.item)
+                                  }
+                                }
+                              },
+                              [_vm._v("query_builder")]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "v-icon",
+                              {
+                                staticClass: "mr-2",
+                                attrs: { small: "" },
+                                on: {
+                                  click: function($event) {
                                     return _vm.editItem(props.item)
                                   }
                                 }
@@ -47926,7 +48017,111 @@ var render = function() {
           dialog: _vm.editDialog,
           editedIndex: _vm.editedItem.id_item
         }
-      })
+      }),
+      _vm._v(" "),
+      _vm.hystoryDialog
+        ? _c("Hystory", {
+            attrs: {
+              dialog: _vm.hystoryDialog,
+              id: _vm.editedItem.id_item,
+              caption_item: _vm.editedItem.caption_item
+            }
+          })
+        : _vm._e()
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/modals/Hystory.vue?vue&type=template&id=22c5b246&scoped=true&":
+/*!*****************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/modals/Hystory.vue?vue&type=template&id=22c5b246&scoped=true& ***!
+  \*****************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "v-dialog",
+    {
+      attrs: {
+        fullscreen: "",
+        "hide-overlay": "",
+        transition: "dialog-bottom-transition"
+      },
+      model: {
+        value: _vm.dialog,
+        callback: function($$v) {
+          _vm.dialog = $$v
+        },
+        expression: "dialog"
+      }
+    },
+    [
+      _c(
+        "v-card",
+        [
+          _c(
+            "v-toolbar",
+            [
+              _c(
+                "v-btn",
+                { attrs: { icon: "" }, on: { click: _vm.close } },
+                [_c("v-icon", [_vm._v("close")])],
+                1
+              ),
+              _vm._v(" "),
+              _c("v-toolbar-title", [
+                _vm._v("История предмета: " + _vm._s(_vm.caption_item))
+              ])
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "table",
+            { staticClass: "table table-bordered" },
+            [
+              _c("tr", [
+                _c("th", [_vm._v("Текущий пользователь")]),
+                _vm._v(" "),
+                _c("th", [_vm._v("Статус")]),
+                _vm._v(" "),
+                _c("th", [_vm._v("Дата переход")]),
+                _vm._v(" "),
+                _c("th", [_vm._v("Основание перемещения")])
+              ]),
+              _vm._v(" "),
+              _vm._l(_vm.hystory, function(item, index) {
+                return _c("tr", { key: index }, [
+                  _c("td", [_vm._v(_vm._s(item.name_user))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(item.name_status))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(item.date_hystory))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(item.reason_hystory))])
+                ])
+              })
+            ],
+            2
+          )
+        ],
+        1
+      )
     ],
     1
   )
@@ -48141,177 +48336,156 @@ var render = function() {
                     1
                   ),
                   _vm._v(" "),
-                  _vm.editedIndex === -1
-                    ? _c(
-                        "v-layout",
-                        { attrs: { row: "", wrap: "" } },
+                  _c(
+                    "v-layout",
+                    { attrs: { row: "", wrap: "" } },
+                    [
+                      _c(
+                        "v-flex",
+                        {
+                          attrs: {
+                            xs12: "",
+                            sm12: "",
+                            md6: "",
+                            lg6: "",
+                            xl6: ""
+                          }
+                        },
                         [
                           _c(
-                            "v-flex",
+                            "v-menu",
                             {
-                              attrs: {
-                                xs12: "",
-                                sm12: "",
-                                md6: "",
-                                lg6: "",
-                                xl6: ""
-                              }
+                              scopedSlots: _vm._u([
+                                {
+                                  key: "activator",
+                                  fn: function(ref) {
+                                    var on = ref.on
+                                    return [
+                                      _c(
+                                        "v-text-field",
+                                        _vm._g(
+                                          {
+                                            attrs: {
+                                              label: "Дата приобретения",
+                                              readonly: "",
+                                              clearable: ""
+                                            },
+                                            model: {
+                                              value: _vm.item.buy_date_item,
+                                              callback: function($$v) {
+                                                _vm.$set(
+                                                  _vm.item,
+                                                  "buy_date_item",
+                                                  $$v
+                                                )
+                                              },
+                                              expression: "item.buy_date_item"
+                                            }
+                                          },
+                                          on
+                                        )
+                                      )
+                                    ]
+                                  }
+                                }
+                              ])
                             },
                             [
-                              _c(
-                                "v-menu",
-                                {
-                                  scopedSlots: _vm._u(
-                                    [
-                                      {
-                                        key: "activator",
-                                        fn: function(ref) {
-                                          var on = ref.on
-                                          return [
-                                            _c(
-                                              "v-text-field",
-                                              _vm._g(
-                                                {
-                                                  attrs: {
-                                                    label: "Дата приобретения",
-                                                    readonly: "",
-                                                    clearable: ""
-                                                  },
-                                                  model: {
-                                                    value:
-                                                      _vm.item.buy_date_item,
-                                                    callback: function($$v) {
-                                                      _vm.$set(
-                                                        _vm.item,
-                                                        "buy_date_item",
-                                                        $$v
-                                                      )
-                                                    },
-                                                    expression:
-                                                      "item.buy_date_item"
-                                                  }
-                                                },
-                                                on
-                                              )
-                                            )
-                                          ]
-                                        }
-                                      }
-                                    ],
-                                    null,
-                                    false,
-                                    1829868154
-                                  )
-                                },
-                                [
-                                  _vm._v(" "),
-                                  _c("v-date-picker", {
-                                    attrs: {
-                                      locale: "ru",
-                                      "first-day-of-week": 1
-                                    },
-                                    model: {
-                                      value: _vm.item.buy_date_item,
-                                      callback: function($$v) {
-                                        _vm.$set(_vm.item, "buy_date_item", $$v)
-                                      },
-                                      expression: "item.buy_date_item"
-                                    }
-                                  })
-                                ],
-                                1
-                              )
+                              _vm._v(" "),
+                              _c("v-date-picker", {
+                                attrs: { locale: "ru", "first-day-of-week": 1 },
+                                model: {
+                                  value: _vm.item.buy_date_item,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.item, "buy_date_item", $$v)
+                                  },
+                                  expression: "item.buy_date_item"
+                                }
+                              })
                             ],
                             1
-                          ),
-                          _vm._v(" "),
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-flex",
+                        {
+                          attrs: {
+                            xs12: "",
+                            sm12: "",
+                            md6: "",
+                            lg6: "",
+                            xl6: ""
+                          }
+                        },
+                        [
                           _c(
-                            "v-flex",
+                            "v-menu",
                             {
-                              attrs: {
-                                xs12: "",
-                                sm12: "",
-                                md6: "",
-                                lg6: "",
-                                xl6: ""
-                              }
+                              scopedSlots: _vm._u([
+                                {
+                                  key: "activator",
+                                  fn: function(ref) {
+                                    var on = ref.on
+                                    return [
+                                      _c(
+                                        "v-text-field",
+                                        _vm._g(
+                                          {
+                                            attrs: {
+                                              label: "Дата гарантии",
+                                              readonly: "",
+                                              clearable: ""
+                                            },
+                                            model: {
+                                              value:
+                                                _vm.item.guarantee_date_item,
+                                              callback: function($$v) {
+                                                _vm.$set(
+                                                  _vm.item,
+                                                  "guarantee_date_item",
+                                                  $$v
+                                                )
+                                              },
+                                              expression:
+                                                "item.guarantee_date_item"
+                                            }
+                                          },
+                                          on
+                                        )
+                                      )
+                                    ]
+                                  }
+                                }
+                              ])
                             },
                             [
-                              _c(
-                                "v-menu",
-                                {
-                                  scopedSlots: _vm._u(
-                                    [
-                                      {
-                                        key: "activator",
-                                        fn: function(ref) {
-                                          var on = ref.on
-                                          return [
-                                            _c(
-                                              "v-text-field",
-                                              _vm._g(
-                                                {
-                                                  attrs: {
-                                                    label: "Дата гарантии",
-                                                    readonly: "",
-                                                    clearable: ""
-                                                  },
-                                                  model: {
-                                                    value:
-                                                      _vm.item
-                                                        .guarantee_date_item,
-                                                    callback: function($$v) {
-                                                      _vm.$set(
-                                                        _vm.item,
-                                                        "guarantee_date_item",
-                                                        $$v
-                                                      )
-                                                    },
-                                                    expression:
-                                                      "item.guarantee_date_item"
-                                                  }
-                                                },
-                                                on
-                                              )
-                                            )
-                                          ]
-                                        }
-                                      }
-                                    ],
-                                    null,
-                                    false,
-                                    3086270530
-                                  )
-                                },
-                                [
-                                  _vm._v(" "),
-                                  _c("v-date-picker", {
-                                    attrs: {
-                                      locale: "ru",
-                                      "first-day-of-week": 1
-                                    },
-                                    model: {
-                                      value: _vm.item.guarantee_date_item,
-                                      callback: function($$v) {
-                                        _vm.$set(
-                                          _vm.item,
-                                          "guarantee_date_item",
-                                          $$v
-                                        )
-                                      },
-                                      expression: "item.guarantee_date_item"
-                                    }
-                                  })
-                                ],
-                                1
-                              )
+                              _vm._v(" "),
+                              _c("v-date-picker", {
+                                attrs: { locale: "ru", "first-day-of-week": 1 },
+                                model: {
+                                  value: _vm.item.guarantee_date_item,
+                                  callback: function($$v) {
+                                    _vm.$set(
+                                      _vm.item,
+                                      "guarantee_date_item",
+                                      $$v
+                                    )
+                                  },
+                                  expression: "item.guarantee_date_item"
+                                }
+                              })
                             ],
                             1
                           )
                         ],
                         1
                       )
-                    : _vm._e(),
+                    ],
+                    1
+                  ),
                   _vm._v(" "),
                   _c(
                     "v-layout",
@@ -89929,6 +90103,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/modals/Hystory.vue":
+/*!****************************************************!*\
+  !*** ./resources/js/components/modals/Hystory.vue ***!
+  \****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Hystory_vue_vue_type_template_id_22c5b246_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Hystory.vue?vue&type=template&id=22c5b246&scoped=true& */ "./resources/js/components/modals/Hystory.vue?vue&type=template&id=22c5b246&scoped=true&");
+/* harmony import */ var _Hystory_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Hystory.vue?vue&type=script&lang=js& */ "./resources/js/components/modals/Hystory.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Hystory_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Hystory_vue_vue_type_template_id_22c5b246_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Hystory_vue_vue_type_template_id_22c5b246_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "22c5b246",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/modals/Hystory.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/modals/Hystory.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************!*\
+  !*** ./resources/js/components/modals/Hystory.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Hystory_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./Hystory.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/modals/Hystory.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Hystory_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/modals/Hystory.vue?vue&type=template&id=22c5b246&scoped=true&":
+/*!***********************************************************************************************!*\
+  !*** ./resources/js/components/modals/Hystory.vue?vue&type=template&id=22c5b246&scoped=true& ***!
+  \***********************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Hystory_vue_vue_type_template_id_22c5b246_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./Hystory.vue?vue&type=template&id=22c5b246&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/modals/Hystory.vue?vue&type=template&id=22c5b246&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Hystory_vue_vue_type_template_id_22c5b246_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Hystory_vue_vue_type_template_id_22c5b246_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/modals/Item.vue":
 /*!*************************************************!*\
   !*** ./resources/js/components/modals/Item.vue ***!
@@ -90199,6 +90442,9 @@ __webpack_require__.r(__webpack_exports__);
   },
   get: function get(data) {
     return Object(_Api__WEBPACK_IMPORTED_MODULE_0__["default"])().get('items/' + data);
+  },
+  hystory: function hystory(data) {
+    return Object(_Api__WEBPACK_IMPORTED_MODULE_0__["default"])().get('hystory/' + data);
   }
 });
 

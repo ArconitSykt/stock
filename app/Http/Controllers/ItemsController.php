@@ -18,6 +18,10 @@ class ItemsController extends Controller
         return Items::getUserItems($id);
     }
 
+    public function getHystoryItem($id) {
+        return Items::getHystoryItem($id);
+    }
+
     public function create(Request $request)
     {
         return Items::createItem($request);

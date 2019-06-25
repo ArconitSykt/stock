@@ -29,6 +29,15 @@ class Items extends Model
     }
 
     public static function updateItem($req) {
+        DB::table('items_hystory')->insert(
+            [
+                'current_user_hystory' => $req->current_user_item??1,
+                'reason_hystory' => $req->reason_for_move??"",
+                'id_item_hystory' => $req->id_item??1,
+                'item_status_hystory' => $req->status_item??1,
+                
+            ]
+        );
         return DB::table('items')
             ->where('id_item', $req->id_item)
             ->update([
@@ -80,5 +89,15 @@ class Items extends Model
         } catch (\Throwable $th) {
             return $th;
         }
+    }
+
+    public static function getHystoryItem($id) {
+        return DB::table('items_hystory')
+        ->join('users', 'users.id_user','=','items_hystory.current_user_hystory')
+        ->join('list_status_item', 'list_status_item.id_status','=','items_hystory.item_status_hystory')
+        ->select('items_hystory.*', 'list_status_item.name_status', 'users.name_user')
+        ->where('items_hystory.id_item_hystory', $id)
+        ->orderBy('id_hystory', 'desc')
+        ->get();
     }
 }
