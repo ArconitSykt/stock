@@ -1980,8 +1980,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modals_User__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modals/User */ "./resources/js/components/modals/User.vue");
 /* harmony import */ var _services_ItemsService__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../services/ItemsService */ "./resources/js/services/ItemsService.js");
 /* harmony import */ var _services_UsersService__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../services/UsersService */ "./resources/js/services/UsersService.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _services_BarcodeService__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../services/BarcodeService */ "./resources/js/services/BarcodeService.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_6__);
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -2072,6 +2073,7 @@ var DefaultUser = function DefaultUser() {
 
   name_user: "";
 };
+
 
 
 
@@ -2207,6 +2209,9 @@ var DefaultUser = function DefaultUser() {
 
         this.getItems();
       } else {}
+    },
+    openLink: function openLink(id) {
+      window.open('barcode/' + id);
     }
   },
   computed: {
@@ -47762,14 +47767,22 @@ var render = function() {
                   _c(
                     "v-btn",
                     {
-                      attrs: { color: "cyan", icon: "" },
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: _vm.selectedItems.length > 0,
+                          expression: "selectedItems.length > 0"
+                        }
+                      ],
+                      attrs: { color: "primary", icon: "" },
                       on: {
                         click: function($event) {
-                          return _vm.window.open("")
+                          return _vm.openLink(_vm.selected.id_user)
                         }
                       }
                     },
-                    [_c("v-icon", [_vm._v("graphic_eq")])],
+                    [_c("v-icon", [_vm._v("straighten")])],
                     1
                   ),
                   _vm._v(" "),
@@ -90128,9 +90141,28 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = (function () {
   return axios__WEBPACK_IMPORTED_MODULE_0___default.a.create({
-    //  baseURL:  `http://192.168.0.232/stock2.0/public/`
-    baseURL: "http://localhost/stock2.0/public/"
+    baseURL: "http://192.168.0.232/stock2.0/public/" //  baseURL:  `http://localhost/stock2.0/public/`
+
   });
+});
+
+/***/ }),
+
+/***/ "./resources/js/services/BarcodeService.js":
+/*!*************************************************!*\
+  !*** ./resources/js/services/BarcodeService.js ***!
+  \*************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Api__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Api */ "./resources/js/services/Api.js");
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  get: function get(data) {
+    return Object(_Api__WEBPACK_IMPORTED_MODULE_0__["default"])().get('barcode/' + data);
+  }
 });
 
 /***/ }),

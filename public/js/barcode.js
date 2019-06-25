@@ -16501,12 +16501,11 @@ __webpack_require__.r(__webpack_exports__);
 new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
   el: '#barcode',
   data: {
-    message: "hello",
     formatCode: "CODE39",
-    width: 1.5,
-    height: 80,
+    width: 1.2,
+    height: 70,
     font: 'Times New Roman',
-    fontSize: 16
+    fontSize: 14
   },
   components: {
     barcode: vue_barcode__WEBPACK_IMPORTED_MODULE_1___default.a

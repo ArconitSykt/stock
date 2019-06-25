@@ -39,8 +39,8 @@
         <v-toolbar-title>{{selected.name_user}}</v-toolbar-title>
         <v-spacer></v-spacer>
         <v-toolbar-items>
-          <v-btn color="cyan" icon @click="window.open('')">
-            <v-icon>graphic_eq</v-icon>
+          <v-btn v-show="selectedItems.length > 0" color="primary" icon @click="openLink(selected.id_user)">
+            <v-icon>straighten</v-icon>
           </v-btn>
           <v-btn class="error" icon @click="deleteUser()">
             <v-icon>delete</v-icon>
@@ -86,6 +86,7 @@ import Item from "./modals/Item";
 import User from "./modals/User";
 import ItemsService from "../services/ItemsService";
 import UsersService from "../services/UsersService";
+import BarcodeService from "../services/BarcodeService";
 import Axios from "axios";
 
 export default {
@@ -172,6 +173,9 @@ export default {
         this.getItems();
       } else {
       }
+    },
+    openLink(id) {
+      window.open('barcode/'+ id);
     }
   },
   computed: {
