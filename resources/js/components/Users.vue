@@ -86,7 +86,6 @@ import Item from "./modals/Item";
 import User from "./modals/User";
 import ItemsService from "../services/ItemsService";
 import UsersService from "../services/UsersService";
-import BarcodeService from "../services/BarcodeService";
 import Axios from "axios";
 
 export default {
