@@ -2067,6 +2067,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 //
 //
 //
+//
+//
+//
 var DefaultUser = function DefaultUser() {
   _classCallCheck(this, DefaultUser);
 
@@ -2208,8 +2211,8 @@ var DefaultUser = function DefaultUser() {
         this.getItems();
       } else {}
     },
-    openLink: function openLink(id) {
-      window.open('barcode/' + id);
+    openLink: function openLink(link) {
+      window.open(link);
     }
   },
   computed: {
@@ -47773,10 +47776,34 @@ var render = function() {
                           expression: "selectedItems.length > 0"
                         }
                       ],
+                      attrs: { color: "success", icon: "" },
+                      on: {
+                        click: function($event) {
+                          return _vm.openLink(
+                            "material_card/" + _vm.selected.id_user
+                          )
+                        }
+                      }
+                    },
+                    [_c("v-icon", [_vm._v("assignment_ind")])],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-btn",
+                    {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: _vm.selectedItems.length > 0,
+                          expression: "selectedItems.length > 0"
+                        }
+                      ],
                       attrs: { color: "primary", icon: "" },
                       on: {
                         click: function($event) {
-                          return _vm.openLink(_vm.selected.id_user)
+                          return _vm.openLink("barcode/" + _vm.selected.id_user)
                         }
                       }
                     },

@@ -77,3 +77,6 @@ Route::get('list/{name}', [
 Route::get('barcode/{id}', [
     'uses' => 'BarcodeController@show',
 ]);
+Route::get('material_card/{id}', [
+    'uses' => 'UsersController@materialCard',
+]);

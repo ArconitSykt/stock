@@ -39,7 +39,10 @@
         <v-toolbar-title>{{selected.name_user}}</v-toolbar-title>
         <v-spacer></v-spacer>
         <v-toolbar-items>
-          <v-btn v-show="selectedItems.length > 0" color="primary" icon @click="openLink(selected.id_user)">
+          <v-btn v-show="selectedItems.length > 0" color="success" icon @click="openLink(`material_card/${selected.id_user}`)">
+            <v-icon>assignment_ind</v-icon>
+          </v-btn>
+          <v-btn v-show="selectedItems.length > 0" color="primary" icon @click="openLink(`barcode/${selected.id_user}`)">
             <v-icon>straighten</v-icon>
           </v-btn>
           <v-btn class="error" icon @click="deleteUser()">
@@ -173,8 +176,8 @@ export default {
       } else {
       }
     },
-    openLink(id) {
-      window.open('barcode/'+ id);
+    openLink(link) {
+      window.open(link);
     }
   },
   computed: {

@@ -30,9 +30,9 @@ class Users extends Model
     }
 
     public static function getUser($id) {
-        return response()->json(DB::table('users')
+        return DB::table('users')
         ->where('id_user', $id)
-        ->first());
+        ->get();
     }
 
     public static function updateUser($req) {

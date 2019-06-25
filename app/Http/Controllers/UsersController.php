@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Users;
+use App;
 use Illuminate\Http\Request;
 
 class UsersController extends Controller
@@ -13,7 +14,7 @@ class UsersController extends Controller
         return Users::getRawUsers();
     }
     public function get($id) {
-        return Users::getUsers($id);
+        return Users::getUser($id);
     }
 
     public function create(Request $request)
@@ -29,5 +30,10 @@ class UsersController extends Controller
     public function delete(Request $request, Users $user)
     {
         return Users::deleteUser($request);
+    }
+
+    public function materialCard($id)
+    {
+        return view('material_card', ['user' => Users::getUser($id), 'items' => App\Items::getUserItems($id)]);
     }
 }
