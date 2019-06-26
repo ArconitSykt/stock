@@ -83,3 +83,18 @@ Route::get('barcode/{id}', [
 Route::get('material_card/{id}', [
     'uses' => 'UsersController@materialCard',
 ]);
+// =============================================================================
+// Agreements
+// =============================================================================
+
+Route::post('agreements/add', [
+    'uses' => 'AgreementsController@store',
+]);
+
+Route::get('agr', [
+    'uses' => 'AgreementsController@index',
+]);
+
+Route::post('agreements/search', [
+    'uses' => 'AgreementsController@search',
+]);

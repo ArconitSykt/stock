@@ -1,8 +1,8 @@
 <template>
   <div>
-    <v-container grid-list-xs>
+    <section>
       <v-layout row wrap justify-space-between>
-        <v-toolbar flat color="white" class="elevation-1">
+        <v-toolbar flat color="white">
           <v-text-field
             v-model="search"
             append-icon="search"
@@ -29,7 +29,7 @@
           ></v-treeview>
         </v-flex>
       </v-layout>
-    </v-container>
+    </section>
 
     <v-dialog v-model="dialog" fullscreen hide-overlay transition="dialog-bottom-transition">
       <v-toolbar>
@@ -66,7 +66,7 @@
             <td>{{ props.item.ser_num_item }}</td>
             <td>{{ props.item.comment_item }}</td>
             <td>{{ props.item.name_status }}</td>
-            <td class="justify-center layout px-0">
+            <td>
               <v-icon small class="mr-2" @click="hystoryItem(props.item)">query_builder</v-icon>
               <v-icon small class="mr-2" @click="editItem(props.item)">edit</v-icon>
               <v-icon small @click="deleteItem(props.item)">delete</v-icon>

@@ -10,6 +10,7 @@
       <v-spacer></v-spacer>
       <v-btn flat @click="navigateTo({name: 'Items'})">Список оборудования и мебели</v-btn>
       <v-btn flat @click="navigateTo({path: '/users'})">Список складов</v-btn>
+      <v-btn flat @click="navigateTo({path: '/agreements'})">Договоры</v-btn>
     </v-toolbar>
     <v-content>
       <v-container fluid>
