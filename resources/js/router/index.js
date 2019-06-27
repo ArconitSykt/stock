@@ -6,6 +6,7 @@ import Agreements from '../components/Agreements'
 Vue.use(Router)
 
 export default new Router({
+  
   routes: [
     {
       path: '/',

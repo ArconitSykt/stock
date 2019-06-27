@@ -22,6 +22,11 @@ new Vue({
   el: '#app',
   router,
   axios,
+  data() {
+    return {
+      url: "http://192.168.0.232/stock2.0/public/"
+    }
+  },
   components: { App },
   template: '<App/>'
 }

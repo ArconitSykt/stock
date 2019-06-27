@@ -39,10 +39,9 @@ export default {
     };
   },
   methods: {
-    getHystory() {
-      axios.get("hystory/" + this.id).then(response => {
-        this.hystory = response.data;
-      });
+    async getHystory() {
+      let response = await ItemsService.hystory(this.id)
+      this.hystory = response.data
     },
     close() {
       Event.$emit("closeDialog", 0);

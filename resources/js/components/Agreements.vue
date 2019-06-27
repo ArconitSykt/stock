@@ -36,7 +36,7 @@
       <template v-slot:items="props">
         <td>{{ props.item.name_file }}</td>
         <td>
-          <a class="link" :href="props.item.path_file" target="_blank">
+          <a class="link" :href="$root.url + props.item.path_file" target="_blank">
             <v-icon>touch_app</v-icon>Просмотр
           </a>
         </td>
@@ -80,15 +80,12 @@ export default {
       let data = await AgreementsService.index();
       this.agreements = data.data;
     },
-    submit() {
+    async submit() {
       const config = { "content-type": "multipart/form-data" };
       const formData = new FormData();
       formData.append("name", this.name);
       formData.append("file", this.attachment);
-      axios
-        .post("agreements/add", formData, config)
-        .then(response => console.log("1 " + response.data.message))
-        .catch(error => console.log(error));
+      let response = await AgreementsService.add(formData, config);
       this.name = null;
       this.attachment = null;
       setTimeout(() => {
