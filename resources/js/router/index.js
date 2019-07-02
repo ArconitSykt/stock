@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Items from '../components/Items'
 import Users from '../components/Users'
 import Agreements from '../components/Agreements'
+import DockPack from '../components/DockPack'
 Vue.use(Router)
 
 export default new Router({
@@ -22,6 +23,11 @@ export default new Router({
       path: '/agreements',
       name: 'Agreements',
       component: Agreements
+    },
+    {
+      path: '/dockpack',
+      name: 'DockPack',
+      component: DockPack
     },
   ]
 })

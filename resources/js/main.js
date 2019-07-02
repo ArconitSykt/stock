@@ -5,9 +5,7 @@ import router from './router'
 import Vuetify from 'vuetify'
 import ru from 'vuetify/es5/locale/ru'
 import axios from 'axios'
-
 import 'vuetify/dist/vuetify.min.css'
-
 Vue.use(Vuetify, {
   lang: {
     locales: { ru },
