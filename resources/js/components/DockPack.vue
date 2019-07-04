@@ -6,7 +6,7 @@
         <v-checkbox label="Доп.соглашение №1 передача" v-model="check.add2"></v-checkbox>
         <v-checkbox label="Доп.соглашение №2 рассторжение" v-model="check.add3"></v-checkbox>
         <v-checkbox label="Акт возврата имущества" v-model="check.add4"></v-checkbox>
-        <v-checkbox label="Акт-приема передачи" v-model="check.add5" :disabled="true"></v-checkbox>
+        <v-checkbox label="Акт-приема передачи" v-model="check.add5"></v-checkbox>
         <v-btn color="primary" icon flat @click="compile">
           <v-icon>get_app</v-icon>
         </v-btn>
@@ -49,12 +49,10 @@
       </v-flex>
       <v-flex xs6 pl-2>
         <v-card>
-          <v-card-title primary-title>
-            Выбранные предметы
-          </v-card-title>
+          <v-card-title primary-title>Выбранные предметы</v-card-title>
           <v-list>
             <template v-for="(item, name) in form.items">
-              <v-list-tile :key="item.id_item"  @click="!true">
+              <v-list-tile :key="item.id_item" @click="!true">
                 <v-list-tile-content :key="item.id_item">
                   <v-list-tile-title>Тип группы: {{name}}</v-list-tile-title>
                   <v-list-tile-sub-title>Позиций в группе: {{item.length}}</v-list-tile-sub-title>
@@ -119,6 +117,7 @@
 </template>
 <script>
 import ItemsService from "../services/ItemsService";
+import DocPackService from "../services/DocPackService";
 import SaveDoc from "../includes/SaveDoc";
 import { log } from "util";
 export default {
@@ -181,6 +180,22 @@ export default {
       if (this.check.add4 == true) {
         this.getHtml("Акт возврата имущества");
       }
+      if (this.check.add5 == true) {
+        axios
+          .post("trans_report", this.form, {
+            responseType: "blob"
+          })
+          .then(response => {
+            const url = window.URL.createObjectURL(new Blob([response.data]));
+            console.log(response);
+            const link = document.createElement("a");
+            link.href = url;
+            link.setAttribute("download", `Акт-приема передачи ${this.form.c_org}.xls`);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+          });
+      }
     },
     getHtml(url) {
       let rawHtml = "";
@@ -197,6 +212,9 @@ export default {
       this.form.items[this.type] = this.selected;
       this.selected = [];
       this.type = null;
+    },
+    async transReport() {
+      return await DocPackService.index(this.form);
     }
   },
   mounted() {

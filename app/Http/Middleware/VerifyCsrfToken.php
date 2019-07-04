@@ -27,5 +27,6 @@ class VerifyCsrfToken extends Middleware
         '/delete/item',
         '/agreements/add',
         '/agreements/search',
+        '/trans_report',
     ];
 }

@@ -83,6 +83,9 @@ Route::get('barcode/{id}', [
 Route::get('material_card/{id}', [
     'uses' => 'UsersController@materialCard',
 ]);
+Route::post('trans_report', [
+    'uses' => 'DocPackController@DocPack',
+]);
 // =============================================================================
 // Agreements
 // =============================================================================
