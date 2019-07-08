@@ -52,6 +52,8 @@ class Items extends Model
                 'current_user_item' => $req->current_user_item??1,
                 'status_item' => $req->status_item??1,
                 'depreciation_item' => $req->depreciation_item??0,
+                'buy_date_item' => $req->buy_date_item,
+                'guarantee_date_item' => $req->guarantee_date_item,
             ]);
     }
 
@@ -66,8 +68,8 @@ class Items extends Model
                     'date_agrement_item' => $req->date_agrement_item,
                     'notation_item' => $req->notation_item,
                     'accounting_item' => $req->accounting_item??"",
-                    'buy_date_item' => $req->buy_date_item??"",
-                    'guarantee_date_item' => $req->guarantee_date_item??"",
+                    'buy_date_item' => $req->buy_date_item,
+                    'guarantee_date_item' => $req->guarantee_date_item,
                     'comment_item' => $req->comment_item??"",
                     'current_user_item' => $req->current_user_item??1,
                     'status_item' => $req->status_item??1,

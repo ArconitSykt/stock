@@ -9,6 +9,9 @@
         </v-btn>
       </template>
       <Item :editedItem="editedItem" :dialog="dialog" :editedIndex="editedIndex"></Item>
+      <v-btn color="blue-grey" flat icon @click="getItems">
+        <v-icon>refresh</v-icon>
+      </v-btn>
     </v-toolbar>
 
     <v-data-table

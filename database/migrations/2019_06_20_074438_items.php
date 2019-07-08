@@ -23,8 +23,8 @@ class Items extends Migration
             $table->text('notation_item')->comment('Пояснение')->nullable($value = true);
             $table->integer('accounting_item')->comment('Метод учета');
             $table->timestamp('add_date_item')->comment('Дата добавления предмета')->useCurrent();
-            $table->date('buy_date_item')->comment('Дата приобретения');
-            $table->date('guarantee_date_item')->comment('Дата завершения гарантии');
+            $table->date('buy_date_item')->comment('Дата приобретения')->nullable($value = true);
+            $table->date('guarantee_date_item')->comment('Дата завершения гарантии')->nullable($value = true);
             $table->text('comment_item')->comment('Примечание')->nullable($value = true);
             $table->integer('current_user_item')->comment('Текущий пользователь');
             $table->integer('status_item')->comment('Статус предмета');
