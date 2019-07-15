@@ -34,15 +34,25 @@
               <v-text-field v-model="item.ser_num_item" label="Серийный номер"></v-text-field>
             </v-flex>
           </v-layout>
-          <v-layout row wrap >
+          <v-layout row wrap>
             <v-flex xs12 sm12 md6 lg6 xl6>
-              <v-menu>
+              <v-menu
+                :close-on-content-click="false"
+                :nudge-right="40"
+                lazy
+                transition="scale-transition"
+                offset-y
+                full-width
+                max-width="290px"
+                min-width="290px"
+              >
                 <template v-slot:activator="{ on }">
                   <v-text-field
                     v-model="item.buy_date_item"
                     label="Дата приобретения"
-                    readonly
                     clearable
+                    prepend-icon="event"
+                    lazy
                     v-on="on"
                   ></v-text-field>
                 </template>
@@ -50,12 +60,21 @@
               </v-menu>
             </v-flex>
             <v-flex xs12 sm12 md6 lg6 xl6>
-              <v-menu>
+              <v-menu
+                :close-on-content-click="false"
+                :nudge-right="40"
+                lazy
+                transition="scale-transition"
+                offset-y
+                full-width
+                max-width="290px"
+                min-width="290px"
+              >
                 <template v-slot:activator="{ on }">
                   <v-text-field
                     v-model="item.guarantee_date_item"
                     label="Дата гарантии"
-                    readonly
+                    prepend-icon="event"
                     clearable
                     v-on="on"
                   ></v-text-field>
@@ -112,12 +131,21 @@
           </v-layout>
           <v-layout row wrap>
             <v-flex xs12 sm12 md12 lg12 xl12>
-              <v-menu>
+              <v-menu
+                :close-on-content-click="false"
+                :nudge-right="40"
+                lazy
+                transition="scale-transition"
+                offset-y
+                full-width
+                max-width="290px"
+                min-width="290px"
+              >
                 <template v-slot:activator="{ on }">
                   <v-text-field
                     v-model="item.date_agrement_item"
                     label="Дата договора"
-                    readonly
+                    prepend-icon="event"
                     clearable
                     v-on="on"
                   ></v-text-field>
