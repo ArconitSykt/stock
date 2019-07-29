@@ -1,4 +1,5 @@
 require('./bootstrap');
+import 'material-design-icons-iconfont'
 import Vue from 'vue'
 import App from './App'
 import router from './router'
@@ -22,7 +23,7 @@ new Vue({
   axios,
   data() {
     return {
-      url: "http://192.168.0.232/stock2.0/public/"
+      url: "http://192.168.0.22/stock2.0/public/"
     }
   },
   components: { App },

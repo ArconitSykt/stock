@@ -6,7 +6,7 @@
           <v-icon>close</v-icon>
         </v-btn>
         <v-spacer></v-spacer>
-        
+
         <v-btn class="success" icon @click="save">
           <v-icon>save</v-icon>
         </v-btn>
