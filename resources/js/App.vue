@@ -12,6 +12,7 @@
       <v-btn flat @click="navigateTo({path: '/users'})">Список складов</v-btn>
       <v-btn flat @click="navigateTo({path: '/agreements'})">Договоры</v-btn>
       <v-btn flat @click="navigateTo({path: '/dockpack'})">Формирование пакета документов</v-btn>
+      <v-btn flat @click="navigateTo({path: '/printbarcode'})">Печать Штрих-кодов</v-btn>
     </v-toolbar>
     <v-content>
       <v-container fluid>

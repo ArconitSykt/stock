@@ -7,6 +7,8 @@ import Vuetify from 'vuetify'
 import ru from 'vuetify/es5/locale/ru'
 import axios from 'axios'
 import 'vuetify/dist/vuetify.min.css'
+import Config from "./includes/Config";
+
 Vue.use(Vuetify, {
   lang: {
     locales: { ru },
@@ -21,10 +23,8 @@ new Vue({
   el: '#app',
   router,
   axios,
-  data() {
-    return {
-      url: "http://192.168.0.22/stock2.0/public/"
-    }
+  data: {
+    url: `${Config.getURL()}`
   },
   components: { App },
   template: '<App/>'
