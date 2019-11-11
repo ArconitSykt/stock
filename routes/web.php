@@ -80,6 +80,9 @@ Route::get('list/{name}', [
 Route::get('barcode/{id}', [
     'uses' => 'BarcodeController@show',
 ]);
+Route::post('barcode_pull', [
+    'uses' => 'BarcodeController@show_pull',
+]);
 Route::get('material_card/{id}', [
     'uses' => 'UsersController@materialCard',
 ]);

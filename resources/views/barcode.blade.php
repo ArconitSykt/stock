@@ -33,13 +33,14 @@ body {
 
 <div class="pageBarcode">
     <div class="stringBarcode">
-        <?php foreach ($items as $key => $item):
+        <?php 
+        foreach ($items as $key => $item):
             $name = rtrim (mb_substr((string)$item->caption_item,0,30,"UTF-8"));?>
             <div class="cellBarcode">
                 <div style="transform: scale(0.65); text-align: center;">
                     <span style='font-size:14;'><b>Собственность ГАУ РК «РИЦОКО»</b></span>
                     <span><?=$name?></span>
-                    <barcode :value=`<?= $item->reg_num_item ?>` :format="formatCode" :width="width" :height="height" :font="font" :fontSize="fontSize"></barcode>
+                    <barcode :value='<?= $item->reg_num_item ?>' :format="formatCode" :width="width" :height="height" :font="font" :fontSize="fontSize"></barcode>
                 </div>
             </div>
             <?php

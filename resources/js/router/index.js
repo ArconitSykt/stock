@@ -4,10 +4,11 @@ import Items from '../components/Items'
 import Users from '../components/Users'
 import Agreements from '../components/Agreements'
 import DockPack from '../components/DockPack'
+import PrintBarCode from '../components/PrintBarCode'
 Vue.use(Router)
 
 export default new Router({
-  
+
   routes: [
     {
       path: '/',
@@ -28,6 +29,11 @@ export default new Router({
       path: '/dockpack',
       name: 'DockPack',
       component: DockPack
+    },
+    {
+      path: '/printbarcode',
+      name: 'PrintBarCode',
+      component: PrintBarCode
     },
   ]
 })

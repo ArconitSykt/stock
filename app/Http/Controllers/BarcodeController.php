@@ -14,4 +14,10 @@ class BarcodeController extends Controller
     {
         return view('barcode', ['data' => $id, 'items' => App\Items::getUserItems($id)]);
     }
+
+    public function show_pull(Request $request)
+    {
+        // var_dump($object = json_decode(json_encode($request->data), FALSE),$request->data);
+        return view('barcode', [ 'items' => json_decode(json_encode($request->data), FALSE)]);
+    }
 }

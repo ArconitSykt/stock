@@ -1,12 +1,12 @@
 class HtmlToDoc {
      constructor(html, form, caption) {
           this.rawHtml = html,
-          this.name = caption
+               this.name = caption
           this.form = form
      }
 
      getWord() {
-          for(var key in this.form) {
+          for (var key in this.form) {
                this.parse(key, this.form[key])
           }
           this.table()
@@ -28,27 +28,27 @@ class HtmlToDoc {
           this.rawHtml = this.rawHtml.replace(new RegExp(`#${needl}#`, 'g'), `${value}`)
      }
 
-     table(){
+     table() {
           let table = "";
           let index = 1;
-          for(var key in this.form.items) {
+          for (var key in this.form.items) {
                table += `<tr><td>${index}</td><td>${key}</td><td>${Object.keys(this.form.items[key]).length}</td><td>`
                this.form.items[key].forEach(element => {
                     table += `${element.reg_num_item}<br>`
                });
-               table +="</td><td>"
+               table += "</td><td>"
                this.form.items[key].forEach(element => {
                     table += `${element.ser_num_item}<br>`
                });
-               table +="</td></tr>"
+               table += "</td></tr>"
                index++
           }
           this.parse("table", table)
-          
+
      }
 }
 export default {
      getWord(rawHtml, form, name) {
           return new HtmlToDoc(rawHtml, form, name).getWord()
-      }
+     }
 }
