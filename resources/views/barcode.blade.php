@@ -39,8 +39,12 @@ body {
             <div class="cellBarcode">
                 <div style="transform: scale(0.65); text-align: center;">
                     <span style='font-size:14;'><b>Собственность ГАУ РК «РИЦОКО»</b></span>
-                    <span><?=$name?></span>
-                    <barcode :value='<?= $item->reg_num_item ?>' :format="formatCode" :width="width" :height="height" :font="font" :fontSize="fontSize"></barcode>
+                    <span><?php
+                     $name = str_replace('<',"⟨",$name);
+                     $name = str_replace('>',"⟩",$name);
+                     echo $name?></span>
+                    <barcode  :value="'{!! $item->reg_num_item !!}'" :format="formatCode" :width="width" :height="height" :font="font" :fontSize="fontSize"></barcode>
+                    
                 </div>
             </div>
             <?php
