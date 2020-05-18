@@ -22,7 +22,7 @@ foreach ($items as $key => $value) {
   }
   $sheet->setCellValueByColumnAndRow(1, 13+$key, $key+1);
   $sheet->setCellValueByColumnAndRow(2, 13+$key, $value->buy_date_item);
-  $sheet->setCellValueByColumnAndRow(3, 13+$key, $value->reg_num_item);
+  $sheet->setCellValueByColumnAndRow(3, 13+$key, " ".$value->reg_num_item);
   $sheet->setCellValueByColumnAndRow(4, 13+$key, $value->ser_num_item);
   $sheet->setCellValueByColumnAndRow(5, 13+$key, $value->caption_item);
   

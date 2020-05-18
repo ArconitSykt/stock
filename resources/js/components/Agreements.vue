@@ -10,7 +10,7 @@
         ref="file"
         name="file"
         @change="onAttachmentChange"
-      >
+      />
       <v-spacer></v-spacer>
       <v-btn color="success" flat type="submit" @click="submit">
         <v-icon>get_app</v-icon>Загрузить
@@ -44,7 +44,7 @@
       </template>
     </v-data-table>
 
-    <SearchAgreements  :dialog="searchDialog"></SearchAgreements>
+    <SearchAgreements :dialog="searchDialog"></SearchAgreements>
   </div>
 </template>
 <script>
@@ -102,7 +102,7 @@ export default {
     });
     this.getAgreements();
   },
-  components:{
+  components: {
     SearchAgreements
   }
 };
