@@ -190,7 +190,10 @@ export default {
             console.log(response);
             const link = document.createElement("a");
             link.href = url;
-            link.setAttribute("download", `Акт-приема передачи ${this.form.c_org}.xls`);
+            link.setAttribute(
+              "download",
+              `Акт-приема передачи ${this.form.c_org}.xls`
+            );
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
