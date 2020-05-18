@@ -208,6 +208,7 @@ export default {
       } catch (error) {}
     },
     close() {
+      this.getList("users");
       Event.$emit("closeDialog", 0);
       setTimeout(() => {
         this.item = new DefaultItem();
@@ -235,9 +236,12 @@ export default {
     },
     item: {
       get: function() {
+        this.getList("users");
         return this.editedItem;
       },
-      set: function() {}
+      set: function() {
+        this.getList("users");
+      }
     }
   }
 };
