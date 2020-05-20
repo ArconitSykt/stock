@@ -9,7 +9,7 @@
       <v-card-text>
         <v-container grid-list-xs>
           <v-text-field v-model="agreement.num_agreement" label="Номер договора" clearable></v-text-field>
-          <v-menu transition="scale-transition" offset-y full-width min-width="290px">
+          <v-menu transition="scale-transition" offset-y min-width="290px">
             <template v-slot:activator="{ on }">
               <v-text-field
                 v-model="agreement.date_agreement"
@@ -27,7 +27,12 @@
               scrollable
             ></v-date-picker>
           </v-menu>
-          <v-btn v-if="agreement.num_agreement != null || agreement.date_agreement != null" color="success" flat @click="getData">
+          <v-btn
+            v-if="agreement.num_agreement != null || agreement.date_agreement != null"
+            color="success"
+            flat
+            @click="getData"
+          >
             <v-icon>search</v-icon>Искать
           </v-btn>
         </v-container>

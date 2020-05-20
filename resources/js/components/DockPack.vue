@@ -7,7 +7,7 @@
         <v-checkbox label="Доп.соглашение №2 рассторжение" v-model="check.add3"></v-checkbox>
         <v-checkbox label="Акт возврата имущества" v-model="check.add4"></v-checkbox>
         <v-checkbox label="Акт-приема передачи" v-model="check.add5"></v-checkbox>
-        <v-btn color="primary" icon flat @click="compile">
+        <v-btn color="primary" icon text @click="compile">
           <v-icon>get_app</v-icon>
         </v-btn>
       </template>
@@ -22,7 +22,7 @@
               <v-text-field v-model="search" label="Поиск" clearable></v-text-field>
               <v-spacer></v-spacer>
               <v-text-field v-model="type" label="Тип группы предметов"></v-text-field>
-              <v-btn color="success" icon flat :disabled="!type" @click="addToFormItems">
+              <v-btn color="success" icon text :disabled="!type" @click="addToFormItems">
                 <v-icon>assignment_turned_in</v-icon>
               </v-btn>
             </v-toolbar>
@@ -32,33 +32,26 @@
               :items="items"
               :search="search"
               item-key="id_item"
-              disable-initial-sort
-              select-all
-            >
-              <template v-slot:items="props">
-                <td>
-                  <v-checkbox v-model="props.selected" primary hide-details></v-checkbox>
-                </td>
-                <td>{{ props.item.caption_item }}</td>
-                <td>{{ props.item.reg_num_item }}</td>
-                <td>{{ props.item.name_user }}</td>
-              </template>
-            </v-data-table>
+              show-select
+            ></v-data-table>
           </v-card-text>
         </v-card>
       </v-flex>
       <v-flex xs6 pl-2>
         <v-card>
           <v-card-title primary-title>Выбранные предметы</v-card-title>
-          <v-list>
-            <template v-for="(item, name) in form.items">
-              <v-list-tile :key="item.id_item" @click="!true">
-                <v-list-tile-content :key="item.id_item">
-                  <v-list-tile-title>Тип группы: {{name}}</v-list-tile-title>
-                  <v-list-tile-sub-title>Позиций в группе: {{item.length}}</v-list-tile-sub-title>
-                </v-list-tile-content>
-              </v-list-tile>
-            </template>
+          <v-list shaped>
+            <v-list-item-group v-model="form.items" color="primary">
+              <v-list-item v-for="(item, name) in form.items" :key="item.id_item">
+                <v-list-item-icon>
+                  <v-icon>mdi-arrow-right</v-icon>
+                </v-list-item-icon>
+                <v-list-item-content>
+                  <v-list-item-title>Тип группы: {{name}}</v-list-item-title>
+                  <v-list-item-subtitle>Позиций в группе: {{item.length}}</v-list-item-subtitle>
+                </v-list-item-content>
+              </v-list-item>
+            </v-list-item-group>
           </v-list>
         </v-card>
       </v-flex>
