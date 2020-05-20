@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-toolbar app>
+    <v-app-bar app>
       <v-img
         :src="`images/logo.png`"
         :lazy-src="`images/logo.png`"
@@ -8,12 +8,12 @@
         max-height="80px"
       ></v-img>
       <v-spacer></v-spacer>
-      <v-btn flat @click="navigateTo({name: 'Items'})">Список оборудования и мебели</v-btn>
-      <v-btn flat @click="navigateTo({path: '/users'})">Список складов</v-btn>
-      <v-btn flat @click="navigateTo({path: '/agreements'})">Договоры</v-btn>
-      <v-btn flat @click="navigateTo({path: '/dockpack'})">Формирование пакета документов</v-btn>
-      <v-btn flat @click="navigateTo({path: '/printbarcode'})">Печать Штрих-кодов</v-btn>
-    </v-toolbar>
+      <v-btn text @click="navigateTo({name: 'Items'})">Список оборудования и мебели</v-btn>
+      <v-btn text @click="navigateTo({path: '/users'})">Список складов</v-btn>
+      <v-btn text @click="navigateTo({path: '/agreements'})">Договоры</v-btn>
+      <v-btn text @click="navigateTo({path: '/dockpack'})">Формирование пакета документов</v-btn>
+      <v-btn text @click="navigateTo({path: '/printbarcode'})">Печать Штрих-кодов</v-btn>
+    </v-app-bar>
     <v-content>
       <v-container fluid>
         <router-view></router-view>
@@ -55,10 +55,9 @@ export default {
 }
 .v-treeview-node__label {
   cursor: pointer;
-  font-size: 8px;
 }
-.v-treeview-node {
+/* .v-treeview-node {
   border: 1px solid rgb(202, 202, 202);
   background-color: #fff;
-}
+} */
 </style>

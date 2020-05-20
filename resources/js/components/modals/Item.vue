@@ -8,7 +8,7 @@
         <v-toolbar-title>{{ formTitle }}</v-toolbar-title>
         <v-spacer></v-spacer>
         <v-toolbar-items>
-          <v-btn class="success" icon @click="save">
+          <v-btn color="success" icon @click="save">
             <v-icon>save</v-icon>
           </v-btn>
         </v-toolbar-items>
@@ -39,10 +39,8 @@
               <v-menu
                 :close-on-content-click="false"
                 :nudge-right="40"
-                lazy
                 transition="scale-transition"
                 offset-y
-                full-width
                 max-width="290px"
                 min-width="290px"
               >
@@ -52,7 +50,6 @@
                     label="Дата приобретения"
                     clearable
                     prepend-icon="event"
-                    lazy
                     v-on="on"
                   ></v-text-field>
                 </template>
@@ -63,10 +60,8 @@
               <v-menu
                 :close-on-content-click="false"
                 :nudge-right="40"
-                lazy
                 transition="scale-transition"
                 offset-y
-                full-width
                 max-width="290px"
                 min-width="290px"
               >
@@ -134,10 +129,8 @@
               <v-menu
                 :close-on-content-click="false"
                 :nudge-right="40"
-                lazy
                 transition="scale-transition"
                 offset-y
-                full-width
                 max-width="290px"
                 min-width="290px"
               >

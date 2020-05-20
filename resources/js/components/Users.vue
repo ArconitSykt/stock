@@ -20,13 +20,22 @@
             :items="users"
             item-key="id_user"
             item-text="name_user"
-            activatable
-            active-class="light-green lighten-3"
             :active.sync="active"
+            activatable
             hoverable
-            :transition="true"
+            dense
+            transition
             :search="search"
-          ></v-treeview>
+          >
+            <template v-slot:prepend="{ item, open }">
+              <v-icon v-if="!item.type_user">{{ open ? 'mdi-folder-open' : 'mdi-folder' }}</v-icon>
+              <!-- <v-icon v-else>{{ type_icon["_"+item.type_user] }}</v-icon> -->
+
+              <v-icon
+                v-else
+              >{{ open ? type_icon["_"+item.type_user].open: type_icon["_"+item.type_user].close}}</v-icon>
+            </template>
+          </v-treeview>
         </v-flex>
       </v-layout>
     </section>
@@ -39,13 +48,23 @@
         <v-toolbar-title>{{selected.name_user}}</v-toolbar-title>
         <v-spacer></v-spacer>
         <v-toolbar-items>
-          <v-btn v-show="selectedItems.length > 0" color="success" icon @click="openLink(`${$root.url}material_card/${selected.id_user}`)">
+          <v-btn
+            v-show="selectedItems.length > 0"
+            color="success"
+            icon
+            @click="openLink(`${$root.url}material_card/${selected.id_user}`)"
+          >
             <v-icon>assignment_ind</v-icon>
           </v-btn>
-          <v-btn v-show="selectedItems.length > 0" color="primary" icon @click="openLink(`${$root.url}barcode/${selected.id_user}`)">
+          <v-btn
+            v-show="selectedItems.length > 0"
+            color="primary"
+            icon
+            @click="openLink(`${$root.url}barcode/${selected.id_user}`)"
+          >
             <v-icon>straighten</v-icon>
           </v-btn>
-          <v-btn class="error" icon @click="deleteUser()">
+          <v-btn color="error" icon @click="deleteUser()">
             <v-icon>delete</v-icon>
           </v-btn>
           <v-btn color="warning" icon @click="userDialog = true">
@@ -54,30 +73,23 @@
         </v-toolbar-items>
       </v-toolbar>
       <v-card>
-        <v-data-table
-          :headers="headers"
-          :items="selectedItems"
-          class="elevation-1"
-          disable-initial-sort
-        >
-          <template v-slot:items="props">
-            <td>{{ props.item.caption_item }}</td>
-            <td>{{ props.item.reg_num_item }}</td>
-            <td>{{ props.item.ser_num_item }}</td>
-            <td>{{ props.item.comment_item }}</td>
-            <td>{{ props.item.name_status }}</td>
-            <td>
-              <v-icon small class="mr-2" @click="hystoryItem(props.item)">query_builder</v-icon>
-              <v-icon small class="mr-2" @click="editItem(props.item)">edit</v-icon>
-              <v-icon small @click="deleteItem(props.item)">delete</v-icon>
-            </td>
+        <v-data-table :headers="headers" :items="selectedItems" class="elevation-1">
+          <template v-slot:item.actions="{ item }">
+            <v-icon small class="mr-2" @click="hystoryItem(item)">query_builder</v-icon>
+            <v-icon small class="mr-2" @click="editItem(item)">mdi-pen</v-icon>
+            <v-icon small @click="deleteItem(item)">mdi-delete</v-icon>
           </template>
         </v-data-table>
       </v-card>
     </v-dialog>
     <User :editingUser="selected" :dialog="userDialog"></User>
     <Item :editedItem="editedItem" :dialog="editDialog" :editedIndex="editedItem.id_item"></Item>
-    <Hystory v-if="hystoryDialog" :dialog="hystoryDialog" :id="editedItem.id_item" :caption_item="editedItem.caption_item"></Hystory>
+    <Hystory
+      v-if="hystoryDialog"
+      :dialog="hystoryDialog"
+      :id="editedItem.id_item"
+      :caption_item="editedItem.caption_item"
+    ></Hystory>
   </div>
 </template>
 <script>
@@ -131,10 +143,24 @@ export default {
         },
         {
           text: "Действия",
-          value: "caption_item",
+          value: "actions",
           sortable: false
         }
-      ]
+      ],
+      type_icon: {
+        _1: {
+          open: "mdi-folder-open",
+          close: "mdi-folder"
+        },
+        _2: {
+          open: "mdi-human",
+          close: "mdi-human-handsdown"
+        },
+        _3: {
+          open: "mdi-console-line",
+          close: "mdi-contacts"
+        }
+      }
     };
   },
   methods: {
@@ -160,9 +186,8 @@ export default {
     },
 
     async getItems() {
-      let data = await UsersService.getItems(this.active[0])
-      this.selectedItems = data.data
-      
+      let data = await UsersService.getItems(this.active[0]);
+      this.selectedItems = data.data;
     },
     hystoryItem(item) {
       this.editedItem = Object.assign({}, item);
@@ -199,7 +224,7 @@ export default {
   components: {
     Item,
     User,
-    Hystory,
+    Hystory
   },
   created() {
     this.getUsers();

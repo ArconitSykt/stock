@@ -40,18 +40,8 @@
               :items="items"
               :search="search"
               item-key="id_item"
-              disable-initial-sort
-              select-all
-            >
-              <template v-slot:items="props">
-                <td>
-                  <v-checkbox v-model="props.selected" primary hide-details></v-checkbox>
-                </td>
-                <td>{{ props.item.caption_item }}</td>
-                <td>{{ props.item.reg_num_item }}</td>
-                <td>{{ props.item.name_user }}</td>
-              </template>
-            </v-data-table>
+              show-select
+            ></v-data-table>
           </v-card-text>
         </v-card>
       </v-flex>

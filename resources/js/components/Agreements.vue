@@ -12,10 +12,10 @@
         @change="onAttachmentChange"
       />
       <v-spacer></v-spacer>
-      <v-btn color="success" flat type="submit" @click="submit">
+      <v-btn color="success" text type="submit" @click="submit">
         <v-icon>get_app</v-icon>Загрузить
       </v-btn>
-      <v-btn color="blue-grey" dark flat @click="searchDialog = true">
+      <v-btn color="blue-grey" dark text @click="searchDialog = true">
         <v-icon>search</v-icon>Поиск предметов по № договора
       </v-btn>
     </v-toolbar>
@@ -28,11 +28,11 @@
         clearable
         single-line
       ></v-text-field>
-      <v-btn color="blue-grey" flat icon @click="getAgreements">
+      <v-btn color="blue-grey" text icon @click="getAgreements">
         <v-icon>refresh</v-icon>
       </v-btn>
     </v-toolbar>
-    <v-data-table :items="agreements" :headers="headers" :search="search" disable-initial-sort>
+    <v-data-table :items="agreements" :headers="headers" :search="search">
       <template v-slot:items="props">
         <td>{{ props.item.name_file }}</td>
         <td>

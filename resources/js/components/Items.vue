@@ -2,15 +2,21 @@
   <div>
     <v-toolbar flat color="white">
       <template>
-        <v-text-field v-model="search" append-icon="search" label="Поиск" clearable single-line></v-text-field>
+        <v-text-field
+          v-model="search"
+          append-icon="mdi-magnify"
+          label="Поиск"
+          clearable
+          single-line
+        ></v-text-field>
         <v-spacer></v-spacer>
         <v-btn color="success" dark class="mb-2" @click="dialog = true">
-          <v-icon>add</v-icon>Добавить предмет
+          <v-icon>mdi-plus</v-icon>Добавить предмет
         </v-btn>
       </template>
       <Item :editedItem="editedItem" :dialog="dialog" :editedIndex="editedIndex"></Item>
-      <v-btn color="blue-grey" flat icon @click="getItems">
-        <v-icon>refresh</v-icon>
+      <v-btn color="blue-grey" text icon @click="getItems">
+        <v-icon>mdi-cached</v-icon>
       </v-btn>
     </v-toolbar>
 
@@ -19,20 +25,11 @@
       :items="items"
       :search="search"
       class="elevation-1"
-      disable-initial-sort
       :loading="loading"
     >
-      <template v-slot:items="props">
-        <td>{{ props.item.caption_item }}</td>
-        <td>{{ props.item.reg_num_item }}</td>
-        <td>{{ props.item.ser_num_item }}</td>
-        <td>{{ props.item.comment_item }}</td>
-        <td>{{ props.item.name_user }}</td>
-        <td>{{ props.item.name_status }}</td>
-        <td class="justify-center layout px-0">
-          <v-icon small class="mr-2" @click="editItem(props.item)">edit</v-icon>
-          <v-icon small @click="deleteItem(props.item)">delete</v-icon>
-        </td>
+      <template v-slot:item.actions="{ item }">
+        <v-icon small class="mr-2" @click="editItem(item)">mdi-pen</v-icon>
+        <v-icon small @click="deleteItem(item)">mdi-delete</v-icon>
       </template>
       <template v-slot:no-results>
         <v-alert
@@ -46,7 +43,7 @@
     <v-snackbar v-model="snackbar" bottom right :timeout="3000" color="success">
       {{message}}
       <v-btn flat @click="snackbar = false">
-        <v-icon>close</v-icon>
+        <v-icon>mdi-close</v-icon>
       </v-btn>
     </v-snackbar>
   </div>
@@ -110,7 +107,7 @@ export default {
         },
         {
           text: "Действия",
-          value: "caption_item",
+          value: "actions",
           sortable: false
         }
       ],
