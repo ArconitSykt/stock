@@ -64,6 +64,7 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/fruitcake/laravel-cors.git",
+
                 "reference": "03492f1a3bc74a05de23f93b94ac7cc5c173eec9"
             },
             "dist": {
@@ -1365,6 +1366,7 @@
         },
         {
             "name": "phpoffice/phpspreadsheet",
+
             "version": "1.12.0",
             "source": {
                 "type": "git",
@@ -1375,6 +1377,7 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/PHPOffice/PhpSpreadsheet/zipball/f79611d6dc1f6b7e8e30b738fc371b392001dbfd",
                 "reference": "f79611d6dc1f6b7e8e30b738fc371b392001dbfd",
+
                 "shasum": ""
             },
             "require": {
@@ -1454,7 +1457,9 @@
                 "xls",
                 "xlsx"
             ],
+
             "time": "2020-04-27T08:12:48+00:00"
+
         },
         {
             "name": "phpoption/phpoption",
