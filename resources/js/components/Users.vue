@@ -14,6 +14,9 @@
           <v-btn right color="success" @click="userDialog = true">
             <v-icon>add</v-icon>Добавить склад
           </v-btn>
+          <v-btn icon right @click="getUsers">
+            <v-icon>refresh</v-icon>
+          </v-btn>
         </v-toolbar>
         <v-flex xs12>
           <v-treeview

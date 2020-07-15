@@ -168,7 +168,7 @@ class DefaultItem {
     this.notation_item = null;
     this.accounting_item = 1;
     this.buy_date_item = new Date().toISOString().slice(0, 10);
-    this.guarantee_date_item = new Date().toISOString().slice(0, 10);
+    this.guarantee_date_item = null;
     this.comment_item = null;
     this.current_user_item = 1;
     this.status_item = 1;
