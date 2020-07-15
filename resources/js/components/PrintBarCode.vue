@@ -33,6 +33,9 @@
                 <v-icon>add</v-icon>Добавить предмет
                 <span v-if="selected.length > 1">ы&nbsp;</span> в список на печать
               </v-btn>
+              <v-btn icon right @click="getItems">
+                <v-icon>refresh</v-icon>
+              </v-btn>
             </v-toolbar>
             <v-data-table
               v-model="selected"
