@@ -4,6 +4,7 @@ export default {
     index() {
         return Api().get('items')
     },
+
     update(data) {
         return Api().post('update/item', data)
     },
@@ -18,6 +19,13 @@ export default {
     },
     hystory(data) {
         return Api().get('hystory/' + data)
-    }
+    },
+    selectYear(data) {
+        return Api().get('year/' + data)
+    },
+    filter(data) {
+        return Api().get('items_filter/' + data)
+    },
+
 
 }

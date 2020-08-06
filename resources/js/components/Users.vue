@@ -32,7 +32,6 @@
           >
             <template v-slot:prepend="{ item, open }">
               <v-icon v-if="!item.type_user">{{ open ? 'mdi-folder-open' : 'mdi-folder' }}</v-icon>
-              <!-- <v-icon v-else>{{ type_icon["_"+item.type_user] }}</v-icon> -->
 
               <v-icon
                 v-else
@@ -126,44 +125,44 @@ export default {
         {
           text: "Название предмета",
           align: "left",
-          value: "caption_item"
+          value: "caption_item",
         },
         {
           text: "Инвентарный номер",
-          value: "reg_num_item"
+          value: "reg_num_item",
         },
         {
           text: "Серийный номер",
-          value: "ser_num_item"
+          value: "ser_num_item",
         },
         {
           text: "Комментарий",
-          value: "comment_item"
+          value: "comment_item",
         },
         {
           text: "Статус",
-          value: "name_status"
+          value: "name_status",
         },
         {
           text: "Действия",
           value: "actions",
-          sortable: false
-        }
+          sortable: false,
+        },
       ],
       type_icon: {
         _1: {
           open: "mdi-folder-open",
-          close: "mdi-folder"
+          close: "mdi-folder",
         },
         _2: {
           open: "mdi-human",
-          close: "mdi-human-handsdown"
+          close: "mdi-human-handsdown",
         },
         _3: {
           open: "mdi-console-line",
-          close: "mdi-contacts"
-        }
-      }
+          close: "mdi-contacts",
+        },
+      },
     };
   },
   methods: {
@@ -213,7 +212,7 @@ export default {
     },
     openLink(link) {
       window.open(link);
-    }
+    },
   },
   computed: {
     selected() {
@@ -221,13 +220,13 @@ export default {
       const id = this.active[0];
       this.dialog = true;
       this.getItems();
-      return this.rawUsers.find(user => user.id_user === id);
-    }
+      return this.rawUsers.find((user) => user.id_user === id);
+    },
   },
   components: {
     Item,
     User,
-    Hystory
+    Hystory,
   },
   created() {
     this.getUsers();
@@ -240,7 +239,7 @@ export default {
       this.userDialog = false;
       this.hystoryDialog = false;
     });
-  }
+  },
 };
 </script>
 <style scoped>

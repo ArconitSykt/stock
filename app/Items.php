@@ -3,15 +3,37 @@
 namespace App;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
+use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
+use PhpOffice\PhpSpreadsheet\IOFactory;
 
 class Items extends Model
 {
     public static function getItems() {
         return DB::table('items')
         ->join('list_status_item', 'list_status_item.id_status','=','items.status_item')
-        ->join('users', 'users.id_user','=','items.current_user_item')
+        ->leftJoin('users', 'users.id_user','=','items.current_user_item')
         ->select('items.*', 'list_status_item.name_status', 'users.name_user')
         ->get();
+    }
+
+    public static function getItemsFiltering($id) {
+        if($id == 1) {
+            return DB::table('items')
+            ->join('list_status_item', 'list_status_item.id_status','=','items.status_item')
+            ->join('users', 'users.id_user','=','items.current_user_item')
+            ->where('items.status_item', '<>', 3)
+            ->select('items.*', 'list_status_item.name_status', 'users.name_user')
+            ->get();
+        }
+        if($id == 3) {
+            return DB::table('items')
+            ->join('list_status_item', 'list_status_item.id_status','=','items.status_item')
+            ->join('users', 'users.id_user','=','items.current_user_item')
+            ->where('items.status_item', $id)
+            ->select('items.*', 'list_status_item.name_status', 'users.name_user')
+            ->get();
+        }
+        
     }
 
     public static function getUserItems($id) {
@@ -101,5 +123,60 @@ class Items extends Model
         ->where('items_hystory.id_item_hystory', $id)
         ->orderBy('id_hystory', 'desc')
         ->get();
+    }
+
+    public static function selectYear($id) {
+        return DB::table('items')
+        ->join('list_status_item', 'list_status_item.id_status','=','items.status_item')
+        ->join('users', 'users.id_user','=','items.current_user_item')
+        ->whereYear('buy_date_item', $id)
+        ->select('items.*', 'list_status_item.name_status', 'users.name_user')
+        ->get();
+    }
+    public static function import($link, $id) {
+
+        $reader = new Xlsx(); 
+        $spreadsheet = $reader->load("storage/import_items/".$link);
+        
+        /**
+         * Получаем данные из файла
+         */
+        $list = null;
+        foreach($spreadsheet ->getWorksheetIterator() as $key => $value) {
+            $list[$key] = $value->toArray();
+        }
+        
+        foreach ($list[0] as $key => $value) {
+            $item = DB::table('items')->where('reg_num_item', $value[2])->first();
+            if($key == 0) continue;
+            if($item == null) {
+                try {
+                    DB::table('items')->insert(
+                        [
+                            'caption_item' => $value[1],
+                            'reg_num_item' => $value[2],
+                            'ser_num_item' => "",
+                            'num_agrement_item' => "",
+                            'date_agrement_item' => NULL,
+                            'notation_item' => $value[1],
+                            'accounting_item' => 1,
+                            'buy_date_item' =>  date("Y-m-d",strtotime($value[3])),
+                            'guarantee_date_item' => NULL,
+                            'comment_item' => "Импортирован из файла от ".date("Y-m-d"),
+                            'current_user_item' => $id,
+                            'status_item' => 1,
+                            'depreciation_item' => 0,
+                        ]
+                    );
+                } catch (\Throwable $th) {
+                    return "error: ".$th;
+                }
+            }
+            else {
+                echo "Предмет: ".$value[1].", номер: ".$value[2]." уже существует\n<br>";
+            }
+        }
+        unlink("storage/import_items/".$link);
+        return "Импорт завершён!";
     }
 }

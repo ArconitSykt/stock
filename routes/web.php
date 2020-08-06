@@ -31,6 +31,12 @@ Route::get('items/{id}', [
 Route::get('hystory/{id}', [
     'uses' => 'ItemsController@getHystoryItem',
 ]);
+Route::get('year/{id}', [
+    'uses' => 'ItemsController@selectYear',
+]);
+Route::get('items_filter/{id}', [
+    'uses' => 'ItemsController@itemsFilter',
+]);
 
 Route::post('update/item/', [
     'uses' => 'ItemsController@update',
@@ -42,6 +48,10 @@ Route::post('create/item/', [
 
 Route::post('delete/item/', [
     'uses' => 'ItemsController@delete',
+]);
+
+Route::post('items/import/', [
+    'uses' => 'ItemsController@import',
 ]);
 // =============================================================================
 // Users
@@ -103,4 +113,8 @@ Route::get('agr', [
 
 Route::post('agreements/search', [
     'uses' => 'AgreementsController@search',
+]);
+
+Route::post('upload_import_file', [
+    'uses' => 'ItemsController@ulpoad_import_file',
 ]);

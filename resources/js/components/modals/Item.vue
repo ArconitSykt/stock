@@ -183,11 +183,11 @@ export default {
   props: {
     editedItem: Object,
     dialog: Boolean,
-    editedIndex: { type: Number, default: -1 }
+    editedIndex: { type: Number, default: -1 },
   },
   data() {
     return {
-      lists: {}
+      lists: {},
     };
   },
   methods: {
@@ -214,7 +214,7 @@ export default {
     async getList(name) {
       let data = await ListsService.list(name);
       this.lists[name] = data.data;
-    }
+    },
   },
   mounted() {
     this.getList("list_status_item");
@@ -228,14 +228,14 @@ export default {
         : "Редактировать предмет";
     },
     item: {
-      get: function() {
+      get: function () {
         this.getList("users");
         return this.editedItem;
       },
-      set: function() {
+      set: function () {
         this.getList("users");
-      }
-    }
-  }
+      },
+    },
+  },
 };
 </script>

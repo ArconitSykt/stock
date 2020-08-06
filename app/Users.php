@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Users extends Model
 {
     public static function getUsers() {
-        $users =  DB::table('users')->where('parent_user', 0)->get();
+        $users =  DB::table('users')->where('parent_user', 0)->orderBy('type_user', 'asc')->orderBy('name_user', 'asc')->get();
         $users = Users::getChild($users);
         return $users;
     }
@@ -18,7 +18,7 @@ class Users extends Model
 
     public static function getChild($users) {
         foreach ($users as $key => $value) {
-            $child = DB::table('users')->where('parent_user', $value->id_user)->get();
+            $child = DB::table('users')->where('parent_user', $value->id_user)->orderBy('type_user', 'asc')->orderBy('name_user', 'asc')->get();
             $count = count($child);
             if(count($child) > 0) {
                 $count--;

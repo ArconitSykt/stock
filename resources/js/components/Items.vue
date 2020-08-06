@@ -10,6 +10,25 @@
           single-line
         ></v-text-field>
         <v-spacer></v-spacer>
+
+        <v-select
+          :items="lists['list_year']"
+          v-model="current_year"
+          item-text="caption_year"
+          item-value="value_year"
+          label="Выбрать год"
+          @change="getItems"
+        ></v-select>
+        <v-spacer></v-spacer>
+        <v-select
+          :items="status_item"
+          v-model="curent_status"
+          item-text="caption"
+          item-value="value"
+          label="Статус"
+          @change="getItems"
+        ></v-select>
+        <v-spacer></v-spacer>
         <v-btn color="success" dark class="mb-2" @click="dialog = true">
           <v-icon>mdi-plus</v-icon>Добавить предмет
         </v-btn>
@@ -17,6 +36,9 @@
       <Item :editedItem="editedItem" :dialog="dialog" :editedIndex="editedIndex"></Item>
       <v-btn color="blue-grey" text icon @click="getItems">
         <v-icon>refresh</v-icon>
+      </v-btn>
+      <v-btn color="indigo" text icon @click="uploadDialog = true">
+        <v-icon>import_export</v-icon>
       </v-btn>
     </v-toolbar>
 
@@ -26,6 +48,7 @@
       :search="search"
       class="elevation-1"
       :loading="loading"
+      clearable
     >
       <template v-slot:item.actions="{ item }">
         <v-icon small class="mr-2" @click="editItem(item)">mdi-pen</v-icon>
@@ -46,6 +69,7 @@
         <v-icon>mdi-close</v-icon>
       </v-btn>
     </v-snackbar>
+    <UploadImport :dialog="uploadDialog"></UploadImport>
   </div>
 </template>
 <script>
@@ -69,6 +93,8 @@ class DefaultItem {
 import Item from "./modals/Item";
 import ItemsService from "../services/ItemsService";
 import ListsService from "../services/ListsService";
+import UploadImport from "./modals/UploadImport";
+
 export default {
   data() {
     return {
@@ -83,36 +109,44 @@ export default {
         {
           text: "Название предмета",
           align: "left",
-          value: "caption_item"
+          value: "caption_item",
         },
         {
           text: "Инвентарный номер",
-          value: "reg_num_item"
+          value: "reg_num_item",
         },
         {
           text: "Серийный номер",
-          value: "ser_num_item"
+          value: "ser_num_item",
         },
         {
           text: "Комментарий",
-          value: "comment_item"
+          value: "comment_item",
         },
         {
           text: "Текущий пользователь",
-          value: "name_user"
+          value: "name_user",
         },
         {
           text: "Статус",
-          value: "name_status"
+          value: "name_status",
         },
         {
           text: "Действия",
           value: "actions",
-          sortable: false
-        }
+          sortable: false,
+        },
       ],
       items: [],
-      lists: {}
+      lists: {},
+      current_year: 0,
+      curent_status: 1,
+      uploadDialog: false,
+      status_item: [
+        { caption: "Не списанные", value: 1 },
+        { caption: "Все", value: 2 },
+        { caption: "Списанные", value: 3 },
+      ],
     };
   },
   computed: {
@@ -120,28 +154,43 @@ export default {
       return this.editedIndex === -1
         ? "Добавить предмет"
         : "Редактировать предмет";
-    }
+    },
   },
 
   watch: {
     dialog(val) {
       val || this.close();
-    }
+    },
   },
   mounted() {
     Event.$on("closeDialog", (item, response) => {
       this.editedIndex = -1;
       this.getItems();
       this.dialog = false;
+      this.uploadDialog = false;
     });
   },
   created() {
     this.getItems();
+    this.getList("list_year");
   },
   methods: {
     async getItems() {
       this.loading = true;
-      let data = await ItemsService.index();
+      let data = null;
+      if (this.current_year == 0) {
+        if (this.curent_status == 1) {
+          data = await ItemsService.filter(this.curent_status);
+        }
+        if (this.curent_status == 2) {
+          data = await ItemsService.index();
+        }
+        if (this.curent_status == 3) {
+          data = await ItemsService.filter(this.curent_status);
+        }
+      } else {
+        data = await ItemsService.selectYear(this.current_year);
+      }
       this.items = data.data;
       this.loading = false;
     },
@@ -163,18 +212,22 @@ export default {
       } else {
       }
     },
-
     close() {
       this.dialog = false;
       setTimeout(() => {
         this.editedItem = new DefaultItem();
         this.editedIndex = -1;
       }, 300);
-    }
+    },
+    async getList(name) {
+      let data = await ListsService.list(name);
+      this.lists[name] = data.data;
+    },
   },
   components: {
-    Item
-  }
+    Item,
+    UploadImport,
+  },
 };
 </script>
 <style scoped>

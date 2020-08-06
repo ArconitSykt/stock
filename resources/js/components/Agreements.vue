@@ -33,14 +33,12 @@
       </v-btn>
     </v-toolbar>
     <v-data-table :items="agreements" :headers="headers" :search="search">
-      <template v-slot:items="props">
-        <td>{{ props.item.name_file }}</td>
+      <template v-slot:item.path_file="{item}">
         <td>
-          <a class="link" :href="$root.url + props.item.path_file" target="_blank">
+          <a class="link" :href="$root.url + item.path_file" target="_blank">
             <v-icon>touch_app</v-icon>Просмотр
           </a>
         </td>
-        <td>{{props.item.date_load_file}}</td>
       </template>
     </v-data-table>
 
@@ -61,18 +59,18 @@ export default {
       headers: [
         {
           text: "Название документа",
-          value: "name_file"
+          value: "name_file",
         },
         {
           text: "Просмотр",
           value: "path_file",
-          sortable: false
+          sortable: false,
         },
         {
           text: "Дата загрузки",
-          value: "date_load_file"
-        }
-      ]
+          value: "date_load_file",
+        },
+      ],
     };
   },
   methods: {
@@ -94,7 +92,7 @@ export default {
     },
     onAttachmentChange(e) {
       this.attachment = this.$refs.file.files[0];
-    }
+    },
   },
   mounted() {
     Event.$on("closeDialog", (item, response) => {
@@ -103,8 +101,8 @@ export default {
     this.getAgreements();
   },
   components: {
-    SearchAgreements
-  }
+    SearchAgreements,
+  },
 };
 </script>
 <style scoped>
